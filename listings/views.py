@@ -5,6 +5,7 @@ This module contains views for the listings' app.
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import Category, Product, Review
 from .forms import ReviewForm
+from cart.forms import CartAddProductForm
 
 
 # Create your views here.
@@ -51,7 +52,10 @@ def product_detail(req, category_slug, product_slug):
     else:
         review_form = ReviewForm()
 
+    cart_product_form = CartAddProductForm()
+
     return render(req, 'product/detail.html', {
         'product': product,
-        'review_form': review_form
+        'review_form': review_form,
+        'cart_product_form': cart_product_form
     })
